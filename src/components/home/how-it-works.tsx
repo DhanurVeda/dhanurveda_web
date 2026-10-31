@@ -1,26 +1,15 @@
 import { Phone, type Screen } from "@/components/phone";
 import { SectionHeading } from "@/components/section-heading";
+import { steps as stepCopy } from "@/lib/content";
 
-const steps: { title: string; body: string; screen: Screen; alt: string }[] = [
-  {
-    title: "Set up",
-    body: "Choose your bow hand and place your iPhone side on. Spoken guidance helps you frame yourself.",
-    screen: "hand",
-    alt: "Choosing the playing hand",
-  },
-  {
-    title: "Shoot",
-    body: "Step into the outline and start. DhanurVeda records your session and tracks your form.",
-    screen: "sideview",
-    alt: "Side view setup outline",
-  },
-  {
-    title: "Improve",
-    body: "Replay with your posture drawn in, score each arrow and see what to work on next.",
-    screen: "scoresheet",
-    alt: "Score sheet after a session",
-  },
+// Same order as the steps copy.
+const visuals: { screen: Screen; alt: string }[] = [
+  { screen: "hand", alt: "Choosing the playing hand" },
+  { screen: "sideview", alt: "Side view setup outline" },
+  { screen: "scoresheet", alt: "Score sheet after a session" },
 ];
+
+const steps = stepCopy.map((step, i) => ({ ...step, ...visuals[i] }));
 
 export function HowItWorks() {
   return (

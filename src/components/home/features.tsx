@@ -1,14 +1,10 @@
 import type { ReactNode } from "react";
 import { Phone, type Screen } from "@/components/phone";
 import { SectionHeading } from "@/components/section-heading";
+import { features, postureAreas } from "@/lib/content";
 
-const areas = [
-  { label: "Shoulders", tone: "text-green" },
-  { label: "Wrists", tone: "text-red" },
-  { label: "Hips", tone: "text-gold" },
-  { label: "Stance", tone: "text-blue" },
-  { label: "Torso", tone: "text-green" },
-];
+const tones = ["text-green", "text-red", "text-gold", "text-blue", "text-green"];
+const areas = postureAreas.map((label, i) => ({ label, tone: tones[i] }));
 
 export function Features() {
   return (
@@ -21,8 +17,7 @@ export function Features() {
       <div className="mt-14 grid gap-4 md:grid-cols-3">
         <Card
           className="md:col-span-2 md:row-span-2"
-          title="Posture analysis, joint by joint"
-          body="Set your iPhone side on and shoot. DhanurVeda tracks your body through the session, draws your posture over the video and scores each area of your form."
+          {...features.posture}
           phone="analysis"
           phoneAlt="Posture lines drawn over an archer"
           phoneSide="end"
@@ -41,22 +36,18 @@ export function Features() {
         </Card>
         <Card
           className="md:row-span-2"
-          title="Score every arrow"
-          body="Tap where each arrow landed. See your groups by quadrant and your average over time."
+          {...features.scoring}
           phone="scoremap"
           phoneAlt="Score map with arrow hits on a target"
         />
         <Card
-          title="Written feedback, on device"
-          body="On iPhones with Apple Intelligence, your measurements become plain-language advice, generated privately on your phone."
+          {...features.feedback}
         />
         <Card
-          title="Practice your way"
-          body="Train Mode, Time Run Mode or your own presets, with crowd noise simulation and spoken setup guidance."
+          {...features.modes}
         />
         <Card
-          title="Made for every archer"
-          body="Indian, Recurve and Compound bows, right or left handed. Works offline and syncs when you are back online."
+          {...features.archers}
         />
       </div>
     </section>

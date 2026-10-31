@@ -1,27 +1,15 @@
 import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
+import { privacyPoints } from "@/lib/content";
 
-const points = [
-  {
-    title: "Analysed on your iPhone",
-    body: "Posture analysis and written feedback are created on device. The camera only records your practice.",
-    icon: (
-      <path d="M8 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm3 15h2" />
-    ),
-  },
-  {
-    title: "Never sold or shared",
-    body: "No advertising, no third parties, no tracking or analytics. Your data is only shown back to you.",
-    icon: (
-      <path d="M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6l-7-3Zm-3 9 2 2 4-4" />
-    ),
-  },
-  {
-    title: "Yours to delete",
-    body: "Start in guest mode with nothing leaving your phone. Delete your account any time and everything goes with it.",
-    icon: <path d="M4 7h16M10 11v6m4-6v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3" />,
-  },
+// SVG path for each point, in the same order as privacyPoints.
+const icons = [
+  "M8 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm3 15h2",
+  "M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6l-7-3Zm-3 9 2 2 4-4",
+  "M4 7h16M10 11v6m4-6v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3",
 ];
+
+const points = privacyPoints.map((point, i) => ({ ...point, icon: icons[i] }));
 
 export function Privacy() {
   return (
@@ -46,7 +34,7 @@ export function Privacy() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                {point.icon}
+                <path d={point.icon} />
               </svg>
             </span>
             <h3 className="mt-5 text-lg font-semibold tracking-tight">{point.title}</h3>
