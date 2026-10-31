@@ -30,7 +30,10 @@ export const metadata: Metadata = {
   category: "sports",
   creator: site.name,
   publisher: site.name,
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "text/markdown": "/index.md" },
+  },
   robots: {
     index: true,
     follow: true,

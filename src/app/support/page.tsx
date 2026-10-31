@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Faq } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
+import { supportTopics } from "@/lib/content";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -12,21 +13,6 @@ export const metadata: Metadata = pageMetadata({
   description: `Help with ${site.name}: common questions, account deletion and how to get in touch.`,
   path: "/support",
 });
-
-const cards = [
-  {
-    title: "Delete your account",
-    body: "In the app, open Profile › Account Management and choose Delete Account. All of your data is permanently removed from our storage.",
-  },
-  {
-    title: "Posture not measured?",
-    body: "Turn on posture feedback, record in good light and stand side on with your head, feet and entire bow inside the guide.",
-  },
-  {
-    title: "Sessions not syncing?",
-    body: "Check you are signed in under Profile and connected to the internet. Sessions recorded offline sync once you are back online.",
-  },
-];
 
 export default function SupportPage() {
   return (
@@ -55,7 +41,7 @@ export default function SupportPage() {
       </div>
 
       <ul className="mt-4 grid gap-4 sm:grid-cols-3">
-        {cards.map((card) => (
+        {supportTopics.map((card) => (
           <li
             key={card.title}
             className="rounded-3xl bg-surface/50 p-6 shadow-[inset_0_0_0_1px_var(--color-line)]"

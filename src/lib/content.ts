@@ -59,6 +59,21 @@ export const privacyPoints = [
   },
 ] as const;
 
+export const supportTopics = [
+  {
+    title: "Delete your account",
+    body: "In the app, open Profile › Account Management and choose Delete Account. All of your data is permanently removed from our storage.",
+  },
+  {
+    title: "Posture not measured?",
+    body: "Turn on posture feedback, record in good light and stand side on with your head, feet and entire bow inside the guide.",
+  },
+  {
+    title: "Sessions not syncing?",
+    body: "Check you are signed in under Profile and connected to the internet. Sessions recorded offline sync once you are back online.",
+  },
+] as const;
+
 /** Facts an agent or search engine can quote directly. */
 export const appFacts = {
   platform: "iPhone",
