@@ -15,10 +15,10 @@ export function AppStoreButton({ className = "" }: { className?: string }) {
       </span>
     </>
   );
-  const styles = `inline-flex items-center gap-3 rounded-full bg-green px-6 py-3 text-bg shadow-[0_0_40px_-8px_var(--color-green)] transition hover:brightness-110 ${className}`;
+  const styles = `inline-flex items-center gap-3 rounded-full bg-green px-6 py-3 text-bg shadow-[0_0_40px_-8px_var(--color-green)] transition-[filter,scale] hover:brightness-110 ${className}`;
 
   return live ? (
-    <a href={site.appStoreUrl} className={styles}>
+    <a href={site.appStoreUrl} className={`${styles} active:scale-[0.96]`}>
       {content}
     </a>
   ) : (
