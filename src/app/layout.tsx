@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { appFacts } from "@/lib/content";
+import { appStoreId } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -15,22 +17,39 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const homeTitle = `${site.name} · Archery coach app for iPhone`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} · ${site.tagline}`,
-    template: `%s · ${site.name}`,
-  },
+  title: { default: homeTitle, template: `%s · ${site.name}` },
   description: site.description,
   applicationName: site.name,
+  keywords: [...appFacts.keywords],
+  category: "sports",
+  creator: site.name,
+  publisher: site.name,
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
   icons: { icon: "/icon.png", apple: "/icon.png" },
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} · ${site.tagline}`,
+    locale: "en_US",
+    url: "/",
+    title: homeTitle,
     description: site.description,
   },
-  twitter: { card: "summary_large_image" },
+  twitter: { card: "summary_large_image", title: homeTitle, description: site.description },
+  formatDetection: { telephone: false, email: false, address: false },
+  // Smart App Banner in Safari on iPhone, once the App Store URL is set.
+  ...(appStoreId && { itunes: { appId: appStoreId } }),
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION },
+  }),
 };
 
 export const viewport: Viewport = {

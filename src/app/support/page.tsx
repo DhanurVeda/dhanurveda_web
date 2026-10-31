@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Faq } from "@/components/faq";
 import { PageIntro } from "@/components/page-intro";
+import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Support",
   description: `Help with ${site.name}: common questions, account deletion and how to get in touch.`,
-  alternates: { canonical: "/support" },
-};
+  path: "/support",
+});
 
 const cards = [
   {
