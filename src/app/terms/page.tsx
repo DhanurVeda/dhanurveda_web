@@ -10,5 +10,5 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function TermsPage() {
-  return <LegalPage document={termsAndConditions} />;
+  return <LegalPage document={termsAndConditions} path="/terms" />;
 }

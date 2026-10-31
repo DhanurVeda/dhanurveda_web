@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Faq } from "@/components/faq";
+import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
+import { breadcrumbSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -78,6 +80,7 @@ export default function SupportPage() {
         </Link>
         .
       </p>
+      <JsonLd data={breadcrumbSchema("Support", "/support")} />
     </div>
   );
 }

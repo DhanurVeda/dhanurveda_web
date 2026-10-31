@@ -1,11 +1,13 @@
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
 import type { LegalDocument } from "@/lib/legal";
+import { breadcrumbSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 const slug = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-export function LegalPage({ document }: { document: LegalDocument }) {
+export function LegalPage({ document, path }: { document: LegalDocument; path: string }) {
   return (
     <article className="mx-auto max-w-5xl px-5 pt-20 pb-28">
       <PageIntro eyebrow="Legal" title={document.title}>
@@ -66,6 +68,7 @@ export function LegalPage({ document }: { document: LegalDocument }) {
           </p>
         </div>
       </div>
+      <JsonLd data={breadcrumbSchema(document.title, path)} />
     </article>
   );
 }
