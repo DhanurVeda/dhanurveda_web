@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="relative mx-auto flex max-w-xl flex-col items-center px-5 py-32 text-center">
       <div
         aria-hidden
-        className="pointer-events-none absolute top-10 left-1/2 h-72 w-[32rem] -translate-x-1/2 rounded-full bg-green/10 blur-[110px]"
+        className="pointer-events-none absolute top-10 left-1/2 h-72 w-[min(32rem,100vw)] -translate-x-1/2 rounded-full bg-green/10 blur-[110px]"
       />
       <Target />
       <p className="relative mt-8 font-mono text-sm text-green">404</p>

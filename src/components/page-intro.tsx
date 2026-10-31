@@ -14,7 +14,7 @@ export function PageIntro({
     <header className="relative">
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full bg-blue/15 blur-[110px]"
+        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[min(40rem,100vw)] -translate-x-1/2 rounded-full bg-blue/15 blur-[110px]"
       />
       <p className="relative text-xs font-semibold uppercase tracking-[0.2em] text-green">{eyebrow}</p>
       <h1 className="relative mt-4 text-4xl font-semibold tracking-[-0.03em] text-balance sm:text-5xl">
