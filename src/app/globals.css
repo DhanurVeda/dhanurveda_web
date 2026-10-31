@@ -37,6 +37,13 @@
   }
 }
 
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+}
+
 @layer base {
   html {
     color-scheme: dark;
