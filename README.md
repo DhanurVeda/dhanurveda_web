@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DhanurVeda website
 
-## Getting Started
-
-First, run the development server:
+Marketing, support and legal site for the DhanurVeda iOS archery app. Next.js 16 (App Router, Cache Components) with Tailwind CSS 4. Every route is prerendered as static.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | **Required in production.** Canonical origin, e.g. `https://dhanurveda.app`. Used for canonical URLs, the sitemap, Open Graph, JSON-LD and llms.txt. |
+| `NEXT_PUBLIC_APP_STORE_URL` | App Store link. Once set, the buttons switch from "Coming soon" to "Download", Safari shows the Smart App Banner, and the JSON-LD gains `downloadUrl`. |
+| `NEXT_PUBLIC_SUPPORT_EMAIL` | Overrides the default support address. |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional Google Search Console token. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where things live
 
-## Learn More
+- `src/lib/content.ts`: home and support copy. The pages, the JSON-LD and the Markdown versions all read it, so edit copy here.
+- `src/lib/legal.ts`: Privacy Policy, Terms and FAQ. Keep in step with the app's `LegalDocumentView.swift`.
+- `src/lib/site.ts`: name, tagline, URLs, footer links.
 
-To learn more about Next.js, take a look at the following resources:
+## Search and AI agents
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Metadata:** canonical URLs, Open Graph and Twitter cards on every page, a generated share image (`/opengraph-image`), `/sitemap.xml` with screenshots, `/robots.txt` and `/manifest.webmanifest`.
+- **Structured data (`src/lib/schema.ts`):** Organization and WebSite on every page, MobileApplication and FAQPage on the home page, BreadcrumbList on subpages. Check them with the [Rich Results Test](https://search.google.com/test/rich-results).
+- **For agents (`src/lib/markdown.ts`):**
+  - `/llms.txt` is a short index of the site.
+  - `/llms-full.txt` is every page in one Markdown file.
+  - Each page has a Markdown twin (`/index.md`, `/support.md`, `/privacy.md`, `/terms.md`). Each page links to its twin with `<link rel="alternate" type="text/markdown">`.
+  - Requests for a page URL that send `Accept: text/markdown` get the Markdown (`next.config.ts`).
+- **Crawlers:** `robots.txt` allows everyone and names the main AI crawlers explicitly.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+After deploying, submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
