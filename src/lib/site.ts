@@ -7,7 +7,7 @@ export const site = {
   // Set once the app is live, e.g. https://apps.apple.com/app/id0000000000
   appStoreUrl: process.env.NEXT_PUBLIC_APP_STORE_URL ?? "",
   // Shown on the Support, Privacy and Terms pages.
-  supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "team.dhanurveda@gmail.com",
+  supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "dhanurveda.team@gmail.com",
   updated: "31 October 2026",
   year: 2026,
 } as const;
